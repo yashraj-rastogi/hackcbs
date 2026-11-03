@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedEasy — HackCBS 9.0 Presentation Deck (Team axioms)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0B132B;
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  header {
+    height: 56px;
+    background: #102653;
+    border-bottom: 1px solid #1E3A8A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    flex-shrink: 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  button {
+    background: #087BFF;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+  button:hover { background: #0066D6; }
+  button.secondary {
+    background: #1E293B;
+    border: 1px solid #334155;
+  }
+  button.secondary:hover { background: #334155; }
+  .main-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: #050B14;
+    position: relative;
+  }
+  .slide-viewport {
+    width: 100%;
+    max-width: 1400px;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide-viewport img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #FFFFFF;
+  }
+  .thumb-bar {
+    height: 120px;
+    background: #0F172A;
+    border-top: 1px solid #1E293B;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+  .slide-card {
+    width: 160px;
+    aspect-ratio: 16 / 9;
+    background: #1E293B;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .slide-card.active {
+    border-color: #087BFF;
+    transform: scale(1.04);
+  }
+  .slide-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .slide-thumb-header {
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  .counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #94A3B8;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span style="color: #087BFF;">MedEasy</span>
+      <span style="font-size: 13px; font-weight: 600; color: #94A3B8;">| HackCBS 9.0 · Open Innovation & YugabyteDB Track · Team axioms</span>
+    </div>
+    <div class="controls">
+      <span class="counter" id="counter">Slide 01 of 08</span>
+      <button class="secondary" onclick="prevSlide()">◀ Prev</button>
+      <button class="secondary" onclick="nextSlide()">Next ▶</button>
+      <button onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <a href="MedEasy_HackCBS9_Deck.pptx" download style="text-decoration: none;">
+        <button style="background: #059669;">📥 Download .PPTX</button>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-stage">
+    <div class="slide-viewport" id="viewport">
+      <img id="current-slide" src="slide_1.png" alt="Slide Presentation View" />
+    </div>
+  </div>
+
+  <div class="thumb-bar">
+    
+        <div class="slide-card" id="slide-1" onclick="setSlide(1)">
+          <div class="slide-thumb-header">Slide 01</div>
+          <img src="slide_1.png" alt="Slide 1" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-2" onclick="setSlide(2)">
+          <div class="slide-thumb-header">Slide 02</div>
+          <img src="slide_2.png" alt="Slide 2" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-3" onclick="setSlide(3)">
+          <div class="slide-thumb-header">Slide 03</div>
+          <img src="slide_3.png" alt="Slide 3" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-4" onclick="setSlide(4)">
+          <div class="slide-thumb-header">Slide 04</div>
+          <img src="slide_4.png" alt="Slide 4" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-5" onclick="setSlide(5)">
+          <div class="slide-thumb-header">Slide 05</div>
+          <img src="slide_5.png" alt="Slide 5" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-6" onclick="setSlide(6)">
+          <div class="slide-thumb-header">Slide 06</div>
+          <img src="slide_6.png" alt="Slide 6" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-7" onclick="setSlide(7)">
+          <div class="slide-thumb-header">Slide 07</div>
+          <img src="slide_7.png" alt="Slide 7" loading="lazy" />
+        </div>
+        
+        <div class="slide-card" id="slide-8" onclick="setSlide(8)">
+          <div class="slide-thumb-header">Slide 08</div>
+          <img src="slide_8.png" alt="Slide 8" loading="lazy" />
+        </div>
+        
+  </div>
+
+  <script>
+    const images = ['slide_1.png', 'slide_2.png', 'slide_3.png', 'slide_4.png', 'slide_5.png', 'slide_6.png', 'slide_7.png', 'slide_8.png'];
+    let currentIndex = 0;
+
+    function updateView() {
+      document.getElementById('current-slide').src = images[currentIndex];
+      document.getElementById('counter').innerText = `Slide ${String(currentIndex + 1).padStart(2, '0')} of ${String(images.length).padStart(2, '0')}`;
+      
+      document.querySelectorAll('.slide-card').forEach((card, idx) => {
+        if (idx === currentIndex) {
+          card.classList.add('active');
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (currentIndex < images.length - 1) {
+        currentIndex++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateView();
+      }
+    }
+
+    function setSlide(num) {
+      currentIndex = num - 1;
+      updateView();
+    }
+
+    function toggleFullscreen() {
+      const elem = document.getElementById('viewport');
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    });
+
+    updateView();
+  </script>
+</body>
+</html>

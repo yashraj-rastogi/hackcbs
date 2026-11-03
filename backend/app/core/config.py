@@ -14,6 +14,10 @@ DEFAULT_CORS_ORIGINS = (
     "http://localhost:3000,http://127.0.0.1:3000"
 )
 
+# On Vercel, the frontend and backend share the same domain (requests to /api/*
+# are internally routed to the backend service, same origin). MEDEASY_CORS_ORIGINS
+# should be set to your Vercel deployment URL(s) in the Vercel environment dashboard,
+# e.g. "https://your-project.vercel.app,https://your-custom-domain.com"
 
 @lru_cache
 def get_cors_origins() -> list[str]:

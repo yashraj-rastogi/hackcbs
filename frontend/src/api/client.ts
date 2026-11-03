@@ -22,10 +22,14 @@ import type {
 } from "../types";
 export { formatInr, formatSavingsText } from "../i18n/formatters";
 
+// In production on Vercel, VITE_API_BASE_URL is set to "" (empty string) so that
+// all /api/* requests are relative URLs, which Vercel routes to the backend service
+// via the top-level rewrite in vercel.json. In local dev, Vite's proxy (vite.config.ts)
+// forwards /api/* to http://127.0.0.1:8000, so an empty base URL works there too.
 export const API =
   (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
   (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1"
-    ? `http://${window.location.hostname}:8000`
+    ? "" // production: use relative URLs, let Vercel rewrite handle routing
     : "http://127.0.0.1:8000");
 
 let inMemoryAccessToken: string | null = null;
